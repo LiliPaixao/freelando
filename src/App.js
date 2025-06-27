@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@emotion/react";
-import { Card } from "./componentes/Card/card";
+import { Card } from "./componentes/Card/Card";
 import { Estilos } from "./componentes/EstilosGlobais/Estilo";
 import { ProvedorTema } from "./componentes/ProvedorTema/ProvedorTema";
 
