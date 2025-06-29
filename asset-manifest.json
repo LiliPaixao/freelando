@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/freelando/static/js/main.e4948958.js",
+    "static/js/453.14e1423f.chunk.js": "/freelando/static/js/453.14e1423f.chunk.js",
+    "index.html": "/freelando/index.html",
+    "main.e4948958.js.map": "/freelando/static/js/main.e4948958.js.map",
+    "453.14e1423f.chunk.js.map": "/freelando/static/js/453.14e1423f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.e4948958.js"
+  ]
+}
