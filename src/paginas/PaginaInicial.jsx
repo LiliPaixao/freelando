@@ -17,6 +17,7 @@ import { ListaSuspensa } from "../componentes/ListaSuspensa/ListaSuspensa";
 import { ProvedorTema } from "../componentes/ProvedorTema/ProvedorTema";
 import { Rodape } from "../componentes/Rodape/Rodape";
 import { Tipografia } from "../componentes/Tipografia/Tipografia";
+import { Outlet } from "react-router-dom";
 
 const estadosBrasileiros = [
   { "text": "Acre", "value": "AC" },
@@ -116,6 +117,7 @@ const PaginaInicial = () => {
           </Card>
         </Col>
       </Row>
+      < Outlet />
       <Rodape>
         <Container>
           <Row align="center">
