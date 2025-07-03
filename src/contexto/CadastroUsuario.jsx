@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const usuarioInicial = {
@@ -14,6 +15,7 @@ const usuarioInicial = {
 
 export const CadastroUsuarioContext = createContext({
     usuario: usuarioInicial,
+    errors: {},
     setPerfil: () => null,
     setInteresse: () => null,
     setNomeCompleto: () => null,
@@ -21,14 +23,18 @@ export const CadastroUsuarioContext = createContext({
     setCidade: () => null,
     setEmail: () => null,
     setSenha: () => null,
-    setSenhaConfirmada: ()=> null,
+    setSenhaConfirmada: () => null,
+    submeterUsuario: () => null,
+    possoSelecionarInteresse: () => null
 })
 
 export const useCadastroUsuarioContext = () => {
-    return useState(CadastroUsuarioContext);
+    return useContext(CadastroUsuarioContext);
 }
 
 export const CadastroUsuarioProvider = ({ children }) => {
+
+    const navegar = useNavigate()
 
     const [usuario, setUsuario] = useState(usuarioInicial)
 
@@ -42,7 +48,7 @@ export const CadastroUsuarioProvider = ({ children }) => {
     }
 
     const setInteresse = (interesse) => {
-        setInteresse(estadoAnterior =>{
+        setUsuario(estadoAnterior =>{
             return{
                 ...estadoAnterior,
                 interesse
@@ -51,7 +57,7 @@ export const CadastroUsuarioProvider = ({ children }) => {
     }
 
     const setNomeCompleto = (nomeCompleto) => {
-        setNomeCompleto(estadoAnterior => {
+        setUsuario(estadoAnterior => {
             return {
                 ...estadoAnterior,
                 nomeCompleto
@@ -60,7 +66,7 @@ export const CadastroUsuarioProvider = ({ children }) => {
     }
 
     const setUf = (uf) => {
-        setUf(estadoAnterior => {
+        setUsuario(estadoAnterior => {
             return {
                 ...estadoAnterior,
                 uf
@@ -69,7 +75,7 @@ export const CadastroUsuarioProvider = ({ children }) => {
     }
 
     const setCidade = (cidade) => {
-        setCidade(estadoAnterior => {
+        setUsuario(estadoAnterior => {
             return {
                 ...estadoAnterior,
                 cidade
@@ -78,7 +84,7 @@ export const CadastroUsuarioProvider = ({ children }) => {
     }
 
     const setEmail = (email) => {
-        setEmail(estadoAnterior => {
+        setUsuario(estadoAnterior => {
             return {
                 ...estadoAnterior,
                 email
@@ -87,7 +93,7 @@ export const CadastroUsuarioProvider = ({ children }) => {
     }
 
     const setSenha = (senha) => {
-        setSenha(estadoAnterior => {
+        setUsuario(estadoAnterior => {
             return {
                 ...estadoAnterior,
                 senha
@@ -96,12 +102,24 @@ export const CadastroUsuarioProvider = ({ children }) => {
     }
 
     const setSenhaConfirmada = (senhaConfirmada) => {
-        setSenhaConfirmada(estadoAnterior => {
+        setUsuario(estadoAnterior => {
             return {
                 ...estadoAnterior,
                 senhaConfirmada
             }
         })
+    }
+
+    const submeterUsuario = () => {
+        // if (usuario.senha.length < 8) {
+        // return
+        // }
+        console.log(usuario)
+        navegar('/cadastro/concluido')
+    }
+
+    const possoSelecionarInteresse = () => {
+        return !!usuario.perfil
     }
 
     const contexto = {
@@ -114,6 +132,9 @@ export const CadastroUsuarioProvider = ({ children }) => {
         setEmail,
         setSenha,
         setSenhaConfirmada,
+        submeterUsuario,
+        possoSelecionarInteresse
+
     }
 
     return (<CadastroUsuarioContext.Provider value={contexto}>
