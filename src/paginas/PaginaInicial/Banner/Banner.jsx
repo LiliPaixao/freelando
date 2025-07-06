@@ -7,6 +7,7 @@ import imagemBanner from './pessoas.png'
 
 const ImgEstilizado = styled.img`
     max-width: 100%;
+    margin:0 auto;
 `
 
 const FigureEstilizada = styled.figure`

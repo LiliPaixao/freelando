@@ -15,6 +15,8 @@ export const useSessaoUsuarioContext = () => {
 
 export const SessaoUsuarioProvider = ({children}) => {
 
+    const[usuarioEstaLogado, setUsuarioEstaLogado] = useState(!!ArmazenadorToken.accessToken)
+    
     const login = (email, senha) => {
         http.post('/auth/login', {
             email,
@@ -25,12 +27,19 @@ export const SessaoUsuarioProvider = ({children}) => {
                     resposta.data.access_token,
                     resposta.data.refresh_token,
                 )
+                setUsuarioEstaLogado(true)
             })
             .catch(erro => console.error(erro))
     }
+    const logout = () => {
+        ArmazenadorToken.efetuarLogout()
+        setUsuarioEstaLogado(false)
+    }
 
     const value = {
-    login,
+        login,
+        usuarioEstaLogado,
+        logout
     };
 
     return (<SessaoUsuarioContext.Provider value={value}>

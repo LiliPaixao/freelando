@@ -11,8 +11,12 @@ import { IconeTwitch } from "../componentes/Icones/IconeTwitch";
 import { IconeInstagram } from "../componentes/Icones/IconeInstagram";
 import { IconeTwitter } from "../componentes/Icones/IconeTwitter";
 import { Outlet } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import { ArmazenadorToken } from "../utils/ArmazenadorToken";
+import { useSessaoUsuarioContext } from "../contexto/SessaoUsuario";
+const LayoutBase = ({ children }) => {
+    const { usuarioEstaLogado, logout } = useSessaoUsuarioContext()
 
-const LayoutBase = () => {
     return (
         <>
             <Cabecalho>
@@ -22,7 +26,25 @@ const LayoutBase = () => {
                             <FreelandoLogo />
                         </Col>
                         <Col style={{ textAlign: 'right' }}>
-                            <Link>Login</Link>
+                            <RouterLink to="/login">
+                                <Link>Login</Link>
+                            </RouterLink>
+                        </Col>
+                        <Col style={{ textAlign: 'right' }}>
+                            <Link onClick={() => ArmazenadorToken.efetuarLogout()}>
+                                Logout
+                            </Link>
+                            {
+                                usuarioEstaLogado ?
+                                    <Link onClick={logout}>
+                                        Logout
+                                    </Link>
+                                    :
+                                    <RouterLink to="/login">
+                                        <Link>Login</Link>
+                                    </RouterLink>
+                            }
+
                         </Col>
                     </Row>
                 </Container>
