@@ -8,6 +8,7 @@ const SessaoUsuarioContext = createContext({
     logout: () => null,
     perfil: {}
 })
+
 //verificar useSessaoUsuarioContext
 export const useSessaoUsuarioContext = () => {
     return useContext(SessaoUsuarioContext)
@@ -16,7 +17,6 @@ export const useSessaoUsuarioContext = () => {
 export const SessaoUsuarioProvider = ({children}) => {
 
     const[usuarioEstaLogado, setUsuarioEstaLogado] = useState(!!ArmazenadorToken.accessToken)
-    
     const login = (email, senha) => {
         http.post('/auth/login', {
             email,

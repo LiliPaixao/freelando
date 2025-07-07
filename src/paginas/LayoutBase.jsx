@@ -26,14 +26,6 @@ const LayoutBase = ({ children }) => {
                             <FreelandoLogo />
                         </Col>
                         <Col style={{ textAlign: 'right' }}>
-                            <RouterLink to="/login">
-                                <Link>Login</Link>
-                            </RouterLink>
-                        </Col>
-                        <Col style={{ textAlign: 'right' }}>
-                            <Link onClick={() => ArmazenadorToken.efetuarLogout()}>
-                                Logout
-                            </Link>
                             {
                                 usuarioEstaLogado ?
                                     <Link onClick={logout}>
